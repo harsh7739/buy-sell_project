@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>checkout</title>
+    <style>
+         #main{
+            display: flex;
+            justify-content: space-between;
+        }
+        #main > div:nth-child(1) {
+            width: 30%;
+        }
+        #main > div:nth-child(2) {
+            width: 50%;
+        }
+        
+            #container{
+            width: 30%;
+            /* margin: auto; */
+            display: grid;
+            grid-template-columns: repeat(2,1fr);
+            gap: 15px;
+        }
+        #container > div{
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+            padding: 10px;
+        }
+        #container > div > img{
+            width: 100%;
+        }
+        form {
+  margin: 0 auto;
+  margin-top: 50px;
+  width: 100%;
+  box-shadow: rgba(68, 77, 85, 0.2) 0px 8px 24px;
+  padding: 30px;
+}
+
+
+label {
+  font-size: 20px;
+}
+* {
+  box-sizing: border-box;
+}
+
+input[type="text"],
+select,
+textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  resize: vertical;
+}
+input[type="submit"] {
+  background-color: #2b619e;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  width: 100%;
+  font-size: 20px;
+  margin-top: 20px;
+}
+
+input[type="submit"]:hover {
+  background-color: #3973b6;
+}
+span{
+    color: red;
+}
+       
+    </style>
+</head>
+<body>
+    <div id="main">
+    
+    <div>
+        <form >
+            <select id="select">
+                <option value="">Select State</option>
+                <option value="Asam">Asam</option>
+                <option value="Andhrapradesh">Andhrapradesh</option>
+                <option value="Arunachal pradesh">Arunachal pradesh</option>
+                <option value="Bihar">Bihar</option>
+                <option value="Delhi">Delhi</option>
+                <option value="Gujrat">Gujrat</option>
+                <option value="Hariyana">Hariyana</option>
+                <option value="Jharkhand">Jharkhand</option>
+                <option value="Sikkim">Sikkim</option>
+                <option value="Utter padesh">Utter padesh</option>
+                <option value="Madhya pradesh">Madhya pradesh</option>
+                <option value="Maharastra">Maharastra</option>
+
+            </select><br>
+            <label for="">address 1 <span>*</span></label><br>
+            <input type="text" required placeholder="Enter Address 2" id="add1"><br>
+            <label for="">address 2</label><br>
+            <input type="text" placeholder="Enter Address 2"><br>
+            <label for="">address 3</label><br>
+            <input type="text" placeholder="Enter Address 3"><br>
+            <label for="">Street No. <span>*</span></label><br>
+            <input type="text" required placeholder="Enter Street No." id="street"><br>
+            <label for="">Pin Code <span>*</span></label><br>
+            <input type="text" required placeholder="Enter Pin Code" id="pin"><br>
+            <input type="checkbox">
+            <label for="">Cas on delivery</label>
+            <input type="submit" id="submit">
+            
+                
+        </form>
+    </div>
+        <div id="container"></div>
+</div>
+    
+</body>
+</html>
+
+<script>
+let add1 = document.getElementById("add1")
+let street = document.getElementById("street")
+let pin = document.getElementById("pin")
+
+// console.log(orderNo)
+let submit = document.getElementById("submit")
+
+submit.addEventListener("click",(e)=>{
+    e.preventDefault()
+    let orderNo = Math.random().toString(8).slice(2,10)
+    if(add1.value == "" || street.value =="" || pin.value == ""){
+        alert("Please fill required field")
+    }
+    else{
+        alert("your order is confirm now")
+        // console.log("your order is confirm \n Your order No. is :-",orderNo)
+    }
+   
+})
+
+
+    let finaldata = JSON.parse(localStorage.getItem("check"))
+    console.log(finaldata)
+    let container = document.getElementById("container")
+
+    function display(){
+     finaldata.map((element)=>{
+        let cont = document.createElement("div")
+        let img = document.createElement("img")
+        img.setAttribute("src",element.img)
+
+        let h1 = document.createElement("h1")
+          h1.innerText = element.brand
+
+          let h2 = document.createElement("h2")
+          h2.innerText = element.category
+
+          let h3 = document.createElement("h3")
+          h3.innerText = element.price
+          
+
+          
+          
+
+        cont.append(img,h1,h2,h3)
+        container.append(cont)
+     })
+    }
+    display()
+</script>

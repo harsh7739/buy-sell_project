@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart</title>
+    <style>
+        #cart-container{
+            width: 90%;
+            margin: auto;
+            display: grid;
+            grid-template-columns: repeat(4,1fr);
+            gap: 15px;
+        }
+        #cart-container > div{
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+            padding: 10px;
+        }
+        #cart-container > div > img{
+            width: 100%;
+        }
+        #cart-container > div button{
+            padding: 5px 10px;
+            margin: 10px;
+            background-color: chocolate;
+            color: white;
+            font-size: 20px;
+            border: none;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Total Price of Items :- <span id="total">0</span></h1>
+    <div id="cart-container">
+
+    </div>
+</body>
+</html>
+
+<script>
+let signinData = JSON.parse(localStorage.getItem("login"))
+  if(!signinData){
+    alert("you are not login now")
+ window.location.href = "./index.html"
+  }
+
+
+    let cartData = JSON.parse(localStorage.getItem("cart"))
+   
+    let container = document.getElementById("cart-container")
+    let checkout = JSON.parse(localStorage.getItem("ckeck")) || [] 
+
+console.log(cartData)
+    function display(){
+         let total = document.getElementById("total")
+        container.innerHTML = ""
+        cartData.map((element)=>{
+        let cont = document.createElement("div")
+        let img = document.createElement("img")
+        img.setAttribute("src",element.img)
+
+        let h1 = document.createElement("h1")
+          h1.innerText = element.brand
+
+          let h2 = document.createElement("h2")
+          h2.innerText = element.category
+
+          let h3 = document.createElement("h3")
+          h3.innerText = element.price
+          let buy = document.createElement("button")
+          buy.innerText = "Buy"
+
+          let removebtn = document.createElement("button")
+          removebtn.innerText = "remove"
+
+          removebtn.addEventListener("click",()=>{
+             cartData = cartData.filter((elem)=>{
+                return element.id !==  elem.id 
+            })
+            localStorage.setItem("cart",JSON.stringify(cartData))
+            console.log(cartData)
+            display(cartData)
+          })
+          
+          
+          buy.addEventListener("click",()=>{
+            checkout.push({...element})
+            localStorage.setItem("check",JSON.stringify(checkout))
+            window.location.href = "./checkoutpage.html"
+          })
+
+          
+          
+
+        cont.append(img,h1,h2,h3,buy,removebtn)
+        container.append(cont)
+       })
+       let sum = 0
+       for(let i=0;i<cartData.length;i++){
+        sum+= +(cartData[i].price)
+       }
+       total.innerText = sum
+    }
+    display()
+</script>

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sell Page</title>
+    <style>
+        div {
+  display: flex;
+  justify-content: space-around;
+}
+form {
+  margin: 0 auto;
+  margin-top: 50px;
+  width: 30%;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  padding: 30px;
+}
+
+
+label {
+  font-size: 20px;
+}
+
+table {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 60%;
+  margin: auto;
+  margin-top: 50px;
+  text-align: center;
+}
+
+table td,
+table th {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}
+
+/* table tr:nth-child(even) {
+  background-color: #8caacf;
+} */
+
+table tr:hover {
+  background-color: #ddd;
+}
+
+table th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #0468aa;
+  color: white;
+  text-align: center;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+input[type="text"],
+select,
+textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  resize: vertical;
+}
+
+input[type="number"],
+select,
+textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  resize: vertical;
+}
+
+input[type="submit"] {
+  background-color: #2b619e;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  width: 100%;
+  font-size: 20px;
+  margin-top: 20px;
+}
+
+input[type="submit"]:hover {
+  background-color: #3973b6;
+}
+
+h1 {
+  text-align: center;
+  font-size: 50px;
+  text-transform: uppercase;
+  font-family: monospace;
+  color: #2b619e;
+  text-decoration: underline;
+}
+
+    </style>
+</head>
+<body>
+    
+    <h1>Enter Your Product Details Here</h1>
+    
+
+    <div>
+      <!-- ***** We are using form here  ****  -->
+      <form>
+        <label for="">Owner name </label><br />
+        <input id="owner" type="text" placeholder="Enter Owner Name" /><br />
+        <label for="">Product Category</label><br />
+        <input id="category" type="text" placeholder="Enter Product Category" /><br />
+        <label for="">Product Brand </label><br />
+        <input id="brand" type="text" placeholder="Enter Product Brand" /><br />
+        <label for="">Product Price</label><br />
+        <input id="price" type="number" placeholder="Enter Product Price" /><br />
+        <label for="">Product Image</label><br />
+        <input id="img" type="text" placeholder="Enter Image" /><br />
+        <label for="">ID </label><br />
+        <input type="number" id="id" placeholder="ID">
+        
+       
+        <input type="submit" />
+      </form>
+      <table>
+        <!-- Dont change order of columns -->
+        <thead>
+          <tr>
+            <th>Owner Name</th>
+            <th>Category</th>
+            <th>Brand</th>
+            <th>price</th>
+            <th>Image</th>
+            <th>ID</th>
+          </tr>
+        </thead>
+        <tbody>
+        <!-- Append your output to tbody -->
+        </tbody>
+      </table>
+    </div>
+
+</body>
+</html>
+
+<script>
+  let signinData = JSON.parse(localStorage.getItem("login"))
+  if(!signinData){
+    alert("you are not login now")
+ window.location.href = "./index.html"
+  }
+    document.querySelector("form").addEventListener("submit",product);
+    let arr= JSON.parse(localStorage.getItem("buy")) || []
+    let container = document.querySelector("tbody")
+function product(event){
+    event.preventDefault()
+    // tbody.innerText = ""
+    // container.innerHTML = ""
+    let ownername = document.querySelector("#owner").value
+    let category = document.querySelector("#category").value
+    let brand = document.querySelector("#brand").value
+    let price = document.querySelector("#price").value
+    let img = document.querySelector("#img").value
+    let id = document.getElementById("id").value
+
+    let tr = document.createElement("tr")
+    let td1 = document.createElement("td")
+    td1.innerText = ownername;
+    let td2 = document.createElement("td")
+    td2.innerText = category;
+    let td3 = document.createElement("td")
+    td3.innerText = brand
+    let td4 = document.createElement("td")
+    td4.innerText = price
+    let td5 = document.createElement("td")
+    td5.innerText = img
+    let td6 = document.createElement("td")
+    td6.innerText = id
+    
+    
+    tr.append(td1,td2,td3,td4,td5,td6)
+    container.append(tr)
+    let obj = {
+        name : ownername,
+        category:category,
+        brand : brand,
+        price : price,
+        img : img,
+        id:id
+    }
+    arr.push(obj)
+    localStorage.setItem("buy",JSON.stringify(arr))
+    
+    
+}
+
+</script>

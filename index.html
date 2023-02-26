@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Idex page</title>
+    <link rel="stylesheet" href="./Home.css">
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+<style>
+    #container{
+        width: 80%;
+        margin: auto;
+        display: grid;
+        grid-template-columns: repeat(4,1fr);
+        gap: 15px;
+    }
+    #container > div{
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        padding: 15px;
+    }
+    #container > div > img{
+        width: 100%;
+    }
+    #container > div > div > button{
+        /* display: block; */
+        /* display: flex; */
+        /* justify-content: space-between; */
+        margin: 10%;
+        padding: 10px 15px;
+        background-color: rgb(39, 39, 46);
+        color: white;
+        border-radius: 8px;
+    }
+    #main{
+        width: 90%;
+        margin: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        /* font-size: 25px; */
+                          
+    }
+    #pro{
+        text-align: center;
+        margin-bottom: 30px;
+        /* margin-top: 20px; */
+        color: rgb(95, 163, 27);
+    }
+
+    #slideshow{
+            width: 80%;
+            margin: auto;
+            height: 400px;
+        }
+        #slideshow > img{
+            width: 100%;
+            height: 380Px;
+        }
+
+        #filter{
+            font-size: 30px;
+            margin-bottom: 20px;
+            margin-right: 10px;
+        }
+        #filterByRange > input{
+            height: 30px;
+            margin-bottom:20px ;
+        }
+        #filterByRange >button{
+            height: 30px;
+            margin-bottom:20px ;
+            padding: 5px 10px;
+            background-color: grey;
+            border: none;
+            color: white;
+            margin-right: 10px;
+        }
+        #sort{
+            height: 30px;
+            margin-bottom:20px ;
+            margin-right: 10px;
+        }
+        #form > input{
+            height: 30px;
+            margin-bottom:20px ;
+            margin-right: 10px;
+        }
+        #footer{
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+            width: 90%;
+            margin: auto;
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+           
+        }
+        #footer > div >div:nth-child(5){
+            display: flex;
+            justify-content: space-around;
+        }
+        #footer > div >div:nth-child(5) > img{
+            width: 5%;
+            height: 5%px;
+            
+        }
+        
+</style>
+
+</head>
+<body>
+    <div class="container">
+        <div class="top-Navbar">
+            <div class="innerTopNavbarBox">
+                <div>
+                    <div id="logo">
+                        <img width="100%" src="./resource/bb.png" alt="Buy And Sale">
+                    </div>
+                    <div id="filterBox">
+                        <div class="search-icon">
+                            <ion-icon name="search-outline"></ion-icon>
+                        </div>
+                        <input type="text" placeholder="Search city, area or locality ">
+                    </div>
+                    <div id="searchBox">
+                        <input type="text" placeholder="Find car mobile phones and">
+                        <div class="searchProductLogo">
+                            <ion-icon name="search-outline"></ion-icon>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div>
+                    <select>
+                        <option value="">English</option>
+                        <option value="">Hindi</option>
+                    </select>
+                    <div>
+                        <ion-icon name="chatbubble-outline"></ion-icon>
+                    </div>
+                    <div>
+                        <ion-icon name="notifications-outline"></ion-icon>
+                    </div>
+                    <div onclick="signFun()">
+                        <img src="https://static.vecteezy.com/system/resources/thumbnails/002/318/271/small/user-profile-icon-free-vector.jpg" alt="">
+                    </div>
+                    <div>
+                        <button onclick="sellFun()">SELL</button>
+                    </div>
+                    <div>
+                        <button onclick="CartFun()">Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="slideshow"></div>
+
+<h1 id="pro">Buy And Sell Product</h1>
+    <div id="main">
+    <select  id="filter">
+        <option value="">Filter by category</option>
+        <option value="Laptop">Laptop</option>
+        <option value="Phone">phone</option>
+        <option value="Head_Phones">Head_Phones</option>
+        <option value="Speakers">Speakers</option>
+    </select>
+
+    <div id="filterByRange">
+        <input  type="text" id="lower" placeholder="From"/>
+        <input type="text" id="upper" placeholder="To"/>
+        <button id="filter-btn">Filter</button>
+      </div>
+      <select id="sort">
+        <option value="">Sort By Price</option>
+        <option value="asc">Ascending</option>
+        <option value="desc">Descending</option>
+      </select>
+
+      <form id="form">
+        <input type="search" id="search">
+        <input type="submit" value="search">
+      </form>
+    </div>
+
+    <div id="container">
+
+        
+
+    </div>
+
+    <div id="footer">
+        <div>
+            <h2>Popular Location</h2>
+            <p>Kolkata</p>
+            <p>Mumbai</p>
+            <p>Chennai</p>
+            <p>Pune</p>
+        </div>
+        <div>
+            <h2>Trending Location</h2>
+            <p>Bhubneshwar</p>
+            <p>Hydrabad</p>
+            <p>Chandigarh</p>
+            <p>Nasik</p>
+        </div>
+        <div>
+            <h2>About Us</h2>
+            <p>About OLX Group</p>
+            <p>Careers</p>
+            <p>Contact Us</p>
+            <p>OLX People</p>
+        </div>
+        <div>
+            <h2>OLX</h2>
+            <p>Help</p>
+            <p>Sitemap</p>
+            <p>Blog</p>
+            <p>Legal & Privacy Information</p>
+        </div>
+        <div>
+            <h2>Follow Us</h2>
+            <div>
+                <img src="https://cdn-icons-png.flaticon.com/128/2168/2168281.png" alt="">
+                <img src="https://cdn-icons-png.flaticon.com/128/2111/2111463.png" alt="">
+                <img src="https://cdn-icons-png.flaticon.com/128/1384/1384007.png" alt="">
+                <img src="https://cdn-icons-png.flaticon.com/128/3024/3024593.png" alt="">
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+
+<script>
+    // let url = "https://dbioz2ek0e.execute-api.ap-south-1.amazonaws.com/mockapi/get-tech-products"
+
+    let fetchedData = JSON.parse(localStorage.getItem("buy"))
+    // console.log(fetchedData)
+    let checkout = JSON.parse(localStorage.getItem("check")) || []
+    // console.log(fetchedData)
+    // async function fetchFun(){
+    //     try {
+    //         let res = await fetch(url)
+    //     res = await res.json()
+    //     display(res.data)
+    //     fetchedData = res.data
+    //     console.log(res.data)
+    //     } catch (error) {
+    //         console.log(error)
+    //     }
+
+    // }
+    // fetchFun()
+     let arr = JSON.parse(localStorage.getItem("cart")) || []
+    let form = document.querySelector("form")
+    form.addEventListener("submit",(e)=>{
+      e.preventDefault()
+      
+      let searcheddata = fetchedData.filter((ele)=>{
+        if(ele.brand.toUpperCase().includes(form.search.value.toUpperCase())===true){
+          return true
+        }
+
+        else if(ele.category.toUpperCase().includes(form.search.value.toUpperCase())===true){
+          return true
+        }
+        else{
+          return false
+        }
+      })
+      
+      display(searcheddata)
+    })
+
+    let sortEl = document.getElementById("sort")
+    sortEl.addEventListener("change",sortFun)
+    function sortFun(){
+        let value = document.getElementById("sort").value
+        let sortElData = fetchedData.sort((a,b)=>{
+            if(value=="asc"){
+                return a.price - b.price
+            }
+            else{
+                return b.price - a.price
+            }
+        })
+        display(sortElData)
+        if(value==""){
+            display(fetchedData)
+        }
+    }
+
+
+    let container = document.getElementById("container")
+    let filter = document.getElementById("filter")
+    filter.addEventListener("change",()=>{
+        if(filter.value==""){
+            display(fetchedData)
+// console.log(fetchedData)
+            return;
+        }
+        else{
+             let filterData = fetchedData.filter((elem)=>{
+                return elem.category == filter.value
+                 
+            })
+            console.log(filterData)
+            display(filterData)
+        }
+    })
+
+// let form = document.getElementById("sort")
+
+let sbtn = document.getElementById("filter-btn")
+sbtn.addEventListener("click",()=>{
+    let lower = +document.getElementById("lower").value
+let upper = +document.getElementById("upper").value
+    console.log(lower,upper)
+
+    if(lower > upper){
+        alert("Enter valid range")
+        return;
+    }
+let sortData = fetchedData.filter((elem)=>{
+    if(elem.price >= lower && elem.price<=upper){
+        return elem
+    }
+    
+})
+
+// console.log(sortData)
+display(sortData)
+})
+
+     function display(data){
+        container.innerHTML = ""
+        data.map((element)=>{
+        let cont = document.createElement("div")
+        let img = document.createElement("img")
+        img.setAttribute("src",element.img)
+
+        let h1 = document.createElement("h1")
+          h1.innerText = element.brand
+
+          let h2 = document.createElement("h2")
+          h2.innerText = element.category
+
+          let h3 = document.createElement("h3")
+          h3.innerText = element.price
+            
+          let buyCart = document.createElement("div")
+          let add = document.createElement("button")
+          add.innerText = "Add To Cart"
+          
+          add.addEventListener("click",()=>{
+            if(checkduplicate(element)){
+              alert("already in cart")
+              return
+            }
+            else{
+                arr.push({...element})
+                alert("added")
+                localStorage.setItem("cart",JSON.stringify(arr))
+            }
+          })
+
+          let buy = document.createElement("button")
+          buy.innerText = "Buy"
+
+          buy.addEventListener("click",()=>{
+            checkout.push({...element})
+            localStorage.setItem("check",JSON.stringify(checkout))
+            window.location.href = "./checkoutpage.html"
+          })
+
+
+
+          buyCart.append(add,buy)
+
+        cont.append(img,h1,h2,h3,buyCart)
+        container.append(cont)
+       })
+    }
+
+    function checkduplicate(elem){
+        for(let i=0;i<arr.length;i++){
+            if(elem.id==arr[i].id){
+                return true
+            }
+        }
+        return false
+    }
+    display(fetchedData)
+
+
+    function sellFun(){
+        window.location.href="./sellPage.html"
+    }
+    function CartFun(){
+        window.location.href="./cart.html"
+    }
+
+    function signFun(){
+        window.location.href = "./signup.html"
+    }
+
+
+// Slide Show functionality
+let img = document.createElement("img");
+let slidebox = document.getElementById("slideshow");
+slidebox.append(img)
+let i = 0;
+// slideshowFun(movieImages)
+function slideshowFun(images){
+  img.setAttribute("src",images[i]);
+  if(i == images.length-1){
+    i = 0;
+  }else{
+    i++
+  }
+    
+}
+// Use the following data for slideshow
+var itemImages = [
+  "https://apollo-singapore.akamaized.net/v1/files/r1jqr7toxad13-IN/image;s=780x0;q=60",
+  "https://apollo-singapore.akamaized.net/v1/files/9dhz296sfo76-IN/image;s=300x600;q=60",
+  "https://apollo-singapore.akamaized.net/v1/files/09nsys2sbxno3-IN/image;s=300x600;q=60",
+  
+  "https://apollo-singapore.akamaized.net/v1/files/g7jar069lr6z2-IN/image;s=300x600;q=60",
+  "https://apollo-singapore.akamaized.net/v1/files/2yhryu76c6bj1-IN/image;s=300x600;q=60",
+  "https://apollo-singapore.akamaized.net/v1/files/8xht1423ansq2-IN/image;s=300x600;q=60",
+  "https://apollo-singapore.akamaized.net/v1/files/8j80sijnityx-IN/image;s=300x600;q=60",
+  "https://apollo-singapore.akamaized.net/v1/files/zf4bu4h18ex61-IN/image;s=300x600;q=60"
+]
+window.addEventListener("load", function () {
+ // add event-listeners;
+  this.setInterval(slideshowFun,2000,itemImages)
+});
+</script>

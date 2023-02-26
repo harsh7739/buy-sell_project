@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign in Page</title>
+    <style>
+      .nav{
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+      }
+
+      #signin{
+        width: 30%;
+        margin: auto;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+      }
+      #signin > form > input{
+        width: 80%;
+        display: block;
+        margin: auto;
+        font-size: 25px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="nav">
+      <a href="/login.html">Signup</a>
+      <a href="/signin.html">Signin</a>
+    </div>
+    <div id="signin">
+      <h1 id="heading">Please Enter Your Details</h1>
+      <form>
+        <input type="email" id="email" placeholder="Enter your email" />
+        <h3 id="emEl"></h3> <br>
+        <input type="password" id="password"  placeholder="Enter password"/>
+        <h3 id="passEl"></h3> <br>
+ 
+        <input type="submit" value="Submit" />
+      </form>
+    </div>
+  </body>
+  <script>
+    let indata = JSON.parse(localStorage.getItem("account-data"))
+      
+      let form1 = document.querySelector("form")
+      let email=document.getElementById("email")
+      let pass = document.getElementById("password")
+      let head = document.getElementById("heading")
+      let emEl = document.getElementById("emEl")
+      let passEl = document.getElementById("passEl")
+
+      form1.addEventListener("submit",signFun)
+
+      function signFun(){
+        event.preventDefault()
+        passEl.innerText=""
+        head.innerText="Please Enter Your Details"
+        emEl.innerText=""
+       indata.filter((el)=>{
+        if(email.value===el.email && pass.value===el.pass){
+          head.innerText = "Sign in Successful"
+          localStorage.setItem("login",true)
+          window.location.href = "./index.html"
+        }
+        else if(email.value!==el.email && pass.value!==el.pass){
+          head.innerText = "Wrong email and password"
+        }
+        else if(email.value!==el.email){
+            emEl.innerText = "Please Enter correct email"
+        }
+        else if(pass.value!==el.pass){
+          passEl.innerText = "Please Enter correct password"
+        }
+        
+       })
+
+       
+      }
+
+  </script>
+</html>
